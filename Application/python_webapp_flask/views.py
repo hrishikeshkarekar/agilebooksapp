@@ -20,6 +20,17 @@ def home():
 def index():
     return render_template('index.html', title='Home')
 
+@app.route('/search')
+def search():
+
+    searchterm = request.args.get("searchterm")
+
+    url = "https://www.googleapis.com/books/v1/volumes?q=" + searchterm + "$printType=books"
+
+    response = requests.request("GET", url)
+
+    return response.text
+
 @app.route('/contact')
 def contact():
     """Renders the contact page."""
