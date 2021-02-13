@@ -1,12 +1,12 @@
 import pytest
-from selenium import webdriver
+from selenium import webdriver, WebElement
 import unittest
 import os
 import sys
 import pytest
 import time
 
-class FunctionalTests(unittest.TestCase):
+class FunctionalTests_SearchGivesResults(unittest.TestCase):
 
 	def setUp(self):
 		options = webdriver.ChromeOptions()
@@ -20,9 +20,15 @@ class FunctionalTests(unittest.TestCase):
 		end_timestamp = start_timestamp + 60*10
 		while True:
 			try:
-				response = self.driver.get(webAppUrl)
-				title = self.driver.title
-				self.assertIn("Home Page : Agile Books", title)
+
+				WebElement
+				searchtextbox = self.driver.findElement(By.id("searchterm"));
+				searchtextbox.sendKeys("scrum");
+
+				WebElement
+				searchbutton = self.driver.findElement(By.className("searchnow"));
+				searchbutton.click();
+
 				break
 			except Exception as e:
 				print('"##vso[task.logissue type=error;]Test test_selenium failed with error: ' + str(e))
