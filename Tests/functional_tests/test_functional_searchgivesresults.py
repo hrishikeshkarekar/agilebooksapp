@@ -1,5 +1,6 @@
 import pytest
-from selenium import webdriver, WebElement
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import unittest
 import os
 import sys
@@ -20,14 +21,12 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 		end_timestamp = start_timestamp + 60*10
 		while True:
 			try:
+				element = self.driver.find_element_by_id("searchterm");
+				element.send_keys("scrum");
 
-				WebElement
-				searchtextbox = self.driver.findElement(By.id("searchterm"));
-				searchtextbox.sendKeys("scrum");
-
-				WebElement
-				searchbutton = self.driver.findElement(By.className("searchnow"));
-				searchbutton.click();
+				element = self.driver.find_element_by_id("searchnowbtn");
+				element.send_keys(Keys.RETURN);
+				element.close()
 
 				break
 			except Exception as e:
