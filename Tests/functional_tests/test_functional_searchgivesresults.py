@@ -21,11 +21,12 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 		end_timestamp = start_timestamp + 60*10
 		while True:
 			try:
-				element = self.driver.find_element_by_id("searchterm");
-				element.send_keys("kanban");
+				response = self.driver.get(webAppUrl)
+				element = self.driver.find_element_by_id("searchterm")
+				element.send_keys("kanban")
 
-				element = self.driver.find_element_by_id("searchnowbtn");
-				element.send_keys(Keys.RETURN);
+				element = self.driver.find_element_by_id("searchnowbtn")
+				element.send_keys(Keys.RETURN)
 				element.close()
 
 				break
