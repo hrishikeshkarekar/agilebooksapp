@@ -88,6 +88,9 @@
   <section class="features-icons bg-light text-center">
     <div class="container">
       <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h2 class="mb-4" id="books-total-row">No of books returned - <span id="totalbooksreturned"></span></h2>
+        </div>
         <div class="col-lg-4">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div>
@@ -178,7 +181,7 @@
   </section-->
 
   <!-- Call to Action -->
-  <section class="call-to-action text-white text-center">
+  <!--section class="call-to-action text-white text-center">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -199,7 +202,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section-->
 
   <!-- Footer -->
   <footer class="footer bg-light">
@@ -253,6 +256,13 @@
   <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <script>
+
+      $(document).ready(function(){
+
+         $("#books-total-row").hide();
+
+      });
+
       $('.searchnow').on('click',function(){
 
 
@@ -268,6 +278,8 @@
                     var results = JSON.parse(response);
 
                     $("#totalbooksreturned").html(results.totalItems);
+
+                    $("#books-total-row").show();
 
                     for(var i=0; i<=2;i++){
                         item = results.items[i];
