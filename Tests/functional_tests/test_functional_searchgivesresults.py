@@ -22,7 +22,7 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 		while True:
 			try:
 				element = self.driver.find_element_by_id("searchterm");
-				element.send_keys("scrum");
+				element.send_keys("kanban");
 
 				element = self.driver.find_element_by_id("searchnowbtn");
 				element.send_keys(Keys.RETURN);
