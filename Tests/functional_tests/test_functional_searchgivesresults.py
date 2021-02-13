@@ -35,6 +35,7 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 					# Wait as long as required, or maximum of 10 sec for alert to appear
 					WebDriverWait(self.driver, 10)
 					element = self.driver.find_element_by_id("totalbooksreturned")
+					self.assertNotEqual(element.text, "", "Value returned is bad - " + element.text)
 
 				except (TimeoutException) as ex:
 					print('"##vso[task.logissue type=error;]Test test_selenium failed with timeout exception: ' + str(ex))
