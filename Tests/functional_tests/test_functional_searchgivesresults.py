@@ -33,8 +33,7 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 
 				try:
 					# Wait as long as required, or maximum of 10 sec for alert to appear
-					WebDriverWait(self.driver, 5)
-
+					WebDriverWait(self.driver, 10)
 					element = self.driver.find_element_by_id("totalbooksreturned")
 					booksreturned = element.get_attribute("innerHTML")
 					##check value is returned and set in the element
