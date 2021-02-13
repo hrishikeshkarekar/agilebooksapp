@@ -37,7 +37,12 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 					element = self.driver.find_element_by_id("totalbooksreturned")
 					booksreturned = element.get_attribute("innerHTML")
 					##check value is returned and set in the element
-					self.assertNotEqual(booksreturned, "")
+
+                    message = "Value returned - " +  booksreturned + " seeems problematic !"
+        
+                    #assertNotEqual() to check equality of first & second value
+
+					self.assertNotEqual("", booksreturned, message)
 					self.driver.close()
 
 					break
