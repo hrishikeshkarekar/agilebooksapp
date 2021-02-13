@@ -1,6 +1,9 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
+
 import unittest
 import os
 import sys
@@ -27,7 +30,25 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 
 				element = self.driver.find_element_by_id("searchnowbtn")
 				element.send_keys(Keys.RETURN)
-				self.driver.close()
+
+				try:
+					# Wait as long as required, or maximum of 10 sec for alert to appear
+					WebDriverWait(self.driver, 5)
+
+					element = self.driver.find_element_by_id("totalbooksreturned")
+					booksreturned = element.get_attribute("innerHTML")
+					##check value is returned and set in the element
+					self.assertNotEqual(booksreturned, "")
+					self.driver.close()
+
+					break
+
+				except (TimeoutException) as ex:
+					print('"##vso[task.logissue type=error;]Test test_selenium failed with timeout exception: ' + str(ex))
+					current_timestamp = time.time()
+					if (current_timestamp > end_timestamp):
+						raise
+					time.sleep(5)
 
 				break
 			except Exception as e:
