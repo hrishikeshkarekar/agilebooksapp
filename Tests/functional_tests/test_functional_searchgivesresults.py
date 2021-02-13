@@ -1,8 +1,11 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+
 
 import unittest
 import os
@@ -33,10 +36,10 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 
 				try:
 					# Wait as long as required, or maximum of 10 sec for alert to appear
-					WebDriverWait(self.driver, 10)
-					element = self.driver.find_element_by_id("totalbooksreturned")
-					self.assertNotEqual(element.text, "", "Value returned is bad : " + element.text)
-
+					element = WebDriverWait(self.driver, 10).until(
+						EC.presence_of_element_located((By.ID, "totalbooksreturned"))
+						self.assertNotEqual(element.text, "", "Value returned is bad : " + element.text)
+					)
 				except (TimeoutException) as ex:
 					print('"##vso[task.logissue type=error;]Test test_selenium failed with timeout exception: ' + str(ex))
 					current_timestamp = time.time()
