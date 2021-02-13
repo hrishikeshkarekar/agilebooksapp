@@ -255,6 +255,8 @@
   <script>
       $('.searchnow').on('click',function(){
 
+
+
           $.ajax({
                   url: "/search",
                   type: "get",
@@ -280,6 +282,7 @@
                   },
                   error: function(xhr) {
                     //Do Something to handle error
+                    alert("error" + xhr);
                   }
                 });
 
