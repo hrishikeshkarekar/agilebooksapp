@@ -27,7 +27,7 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 
 				element = self.driver.find_element_by_id("searchnowbtn")
 				element.send_keys(Keys.RETURN)
-				element.close()
+				self.driver.close()
 
 				break
 			except Exception as e:
