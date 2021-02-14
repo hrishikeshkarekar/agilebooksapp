@@ -33,7 +33,7 @@
       <a class="navbar-brand" href="#">Agile Books - Working example of a Python based web app with CI/CD</a>
       <a class="btn btn-primary" href="#whatdoesappdo">What does the app do?</a>
         <a class="btn btn-primary" href="#pipeline">CI/CD Pipeline</a>
-        <a class="btn btn-primary" href="#">GitHub Repo</a>
+        <a class="btn btn-primary" href="#githubrepo">GitHub Repo</a>
     </div>
   </nav>
 
@@ -78,6 +78,10 @@
                 <button type="button" class="btn btn-block btn-lg btn-primary searchnow" id="searchnowbtn">Search!</button>
               </div>
             </div>
+            <div class="col-xl-9 mx-auto">
+              <h5 class="mb-5" id="processingmessage">Hold your breath! Getting your results!</h5>
+              <a class="btn btn-secondary" href="#resultspane" id="resultslink">Go to results</a>
+            </div>
           </form>
         </div>
       </div>
@@ -87,7 +91,7 @@
 
 
   <!-- Icons Grid -->
-  <section class="features-icons bg-light text-center">
+  <section class="features-icons bg-light text-center" id="resultspane">
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
@@ -129,21 +133,21 @@
       <div class="row">
         <div class="col-xl-9 mx-auto">
           <h2 class="mb-4">What does the web app do?</h2>
-          <div>
+          <p>
               You could search for any book and it will bring the top 3 results from Google Books search.
-          </div>
-          <div>
+          </p>
+          <p>
               It essentially calls the <a href="https://developers.google.com/books">Google Books API</a> and gets the results.
-          </div>
-          <div>
+          </p>
+          <p>
               <b>Why its called an Agile Book app then ?</b> Just like that. It's a demo app :)
-          </div>
-          <div>
+          </p>
+          <p>
               It was built to code and demonstrate an end to end <b>"working software"</b> example for CI/CD.
-          </div>
-          <div>
+          </p>
+          <p>
               And yes.. while we are at it.. It is fully responsive and mobile friendly too. Thanks <a target="_blank" href="https://startbootstrap.com/theme/landing-page">Start Boot Strap</a> for a simple landing page
-          </div>
+          </p>
         </div>
       </div>
     </div>
@@ -157,10 +161,25 @@
           <div>
               <img id="image-ci-cd-pipeline" class="img-fluid" src="/static/img/ci-cd-pipeline.png">
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div>
-
-          </div>
+  <section class="features-icons bg-light text-center" id="githubrepo">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h2 class="mb-4">The GitHub Repo</h2>
+          <p>The code can be downloaded freely and reviewed, reused, demonstrated as you deem fit.
+            It is available under a <a target="_blank" href="https://opensource.org/licenses/MIT">MIT License</a>
+          </p>
+          <p>
+            The code needs tremendous amount of refactoring. Feel free to suggest changes for improvement.
+          </p>
+          <p>
+            <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/">Visit the GitHub Repository</a>
+          </p>
         </div>
       </div>
     </div>
@@ -304,13 +323,31 @@
 
       $(document).ready(function(){
 
-         $("#books-total-row").hide();
+        $("#books-total-row").hide();
+        $("#processingmessage").hide();
+        $("#resultslink").hide();
+
+
+        let anchorlinks = document.querySelectorAll('a[href^="#"]')
+
+        for (let item of anchorlinks) { // relitere
+            item.addEventListener('click', (e)=> {
+                let hashval = item.getAttribute('href')
+                let target = document.querySelector(hashval)
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                })
+                history.pushState(null, null, hashval)
+                e.preventDefault()
+            })
+        }
 
       });
 
       $('.searchnow').on('click',function(){
 
-
+          $("#processingmessage").show();
 
           $.ajax({
                   url: "/search",
@@ -340,6 +377,8 @@
                             $("#image-" + (i+1)).attr("src", item.volumeInfo.imageLinks.thumbnail);
                         }
 
+                        $("#resultslink").show();
+                        $("#processingmessage").hide();
                     }
                     else{
                         alert('Error:' + resp.error);
@@ -354,6 +393,9 @@
                 });
 
       });
+
+
+
   </script>
 
 </body>
