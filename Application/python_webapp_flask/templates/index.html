@@ -28,7 +28,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-light bg-light static-top">
+  <nav class="navbar navbar-light bg-light static-top" id="hometop">
     <div class="container">
       <a class="navbar-brand" href="#">Agile Books - Working example of a Python based web app with CI/CD</a>
       <a class="btn btn-primary" href="#whatdoesappdo">What does the app do?</a>
@@ -72,7 +72,10 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4" id="books-total-row">No of books returned - <span id="totalbooksreturned"></span></h2>
+          <h2 class="mb-4" id="books-total-row">
+            <span id="NumberBooksLabel">
+            Ready, fire, aim: the fast approach to software development. Ready, aim, aim, aim, aim: the slow approach to software development. (Anonymous)
+          </span><span id="totalbooksreturned"></span></h2>
         </div>
         <div class="col-lg-4">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
@@ -119,8 +122,12 @@
           <p>
               <b>Why its called an Agile Book app then ?</b> Just like that. It's a demo app :)
           </p>
-          <p>
-              It was built to code and demonstrate an end to end <b>"working software"</b> example for CI/CD using a python/Flask along with example unit and functional tests.
+          <a>
+              It was built to code and demonstrate an end to end <b>"working software"</b> example for CI/CD using a functional
+            <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Application">Python/Flask application</a>
+            along with example
+            <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Tests/unit_tests">Unit</a> and
+            <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Tests/functional_tests">Functional</a> tests.
           </p>
           <p>
               And yes.. while we are at it.. It is fully responsive and mobile friendly too. Thanks <a target="_blank" href="https://startbootstrap.com/theme/landing-page">Start Boot Strap</a> for a simple landing page
@@ -170,8 +177,12 @@
         <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
           <ul class="list-inline mb-2">
             <li class="list-inline-item">
-              <a href="http://www.hrishikeshkarekar.com">Hrishikesh Karekar</a>
+              <a target="_blank" href="http://www.hrishikeshkarekar.com">Hrishikesh Karekar</a>
             </li>
+            <li class="list-inline-item">
+              <a target="_blank" href="https://github.com/users/hrishikeshkarekar/projects/1">What's Next</a>
+            </li>
+
           </ul>
 
         </div>
@@ -188,7 +199,6 @@
 
       $(document).ready(function(){
 
-        $("#books-total-row").hide();
         $("#processingmessage").hide();
         $("#resultslink").hide();
 
@@ -229,6 +239,7 @@
 
                         var results = JSON.parse(resp.results);
 
+                        $("#NumberBooksLabel").html("Number of books available on that topic - ");
                         $("#totalbooksreturned").html(results.totalItems);
 
                         $("#books-total-row").show();
@@ -237,10 +248,22 @@
                             item = results.items[i];
                             $("#title-" + (i+1)).html(item.volumeInfo.title);
 
-                            shortDescription = (item.volumeInfo.description).split(" ").splice(0,30).join(" ");
-                            $("#description-" + (i+1)).html(shortDescription);
+                            if(item.volumeInfo.description != undefined) {
+                              shortDescription = (item.volumeInfo.description).split(" ").splice(0,30).join(" ");
+                              $("#description-" + (i+1)).html(shortDescription);
+                            }
+                            else{
+                               $("#description-" + (i+1)).html("NO DESCRIPTION AVAILABLE");
+                            }
 
-                            $("#image-" + (i+1)).attr("src", item.volumeInfo.imageLinks.thumbnail);
+
+                            if(item.volumeInfo.imageLinks != undefined) {
+                              $("#image-" + (i+1)).attr("src", item.volumeInfo.imageLinks.thumbnail);
+                            }
+                            else{
+                              $("#image-" + (i+1)).attr("src", "/static/img/image-not-available.png");
+                            }
+
                         }
 
                         $("#resultslink").show();

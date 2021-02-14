@@ -28,7 +28,7 @@ def search():
 
     searchterm = request.args.get("searchterm")
 
-    url = "https://www.googleapis.com/books/v1/volumes?q=" + searchterm + "$printType=books"
+    url = "https://www.googleapis.com/books/v1/volumes?q=" + searchterm + "&printType=books&maxResults=3"
 
     response = requests.request("GET", url)
 
