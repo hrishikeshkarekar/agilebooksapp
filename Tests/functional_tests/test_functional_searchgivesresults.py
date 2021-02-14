@@ -30,17 +30,14 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 				response = self.driver.get(webAppUrl)
 				element = self.driver.find_element_by_id("searchterm")
 				element.send_keys("kanban")
-
+				# self.driver.implicitly_wait(20)
 				element = self.driver.find_element_by_id("searchnowbtn")
-				element.send_keys(Keys.RETURN)
+				element.click()
 
-				WebDriverWait(self.driver, 10)
-
-				#element = self.driver.find_element_by_id("totalbooksreturned")
-
-				wait = WebDriverWait(self.driver, 10)
-				elem = wait.until(EC.visibility_of_element_located(By.ID, "totalbooksreturned"))
-				self.assertNotEqual(elem.text, "", "Value returned is bad : " + elem.text)
+				element = WebDriverWait(self.driver, 10).until(
+					EC.visibility_of_element_located((By.ID, "searchnowbtn"))
+				)
+				self.assertNotEqual(element.text, "", "Value returned is bad : ")
 
 			except Exception as e:
 				print('"##vso[task.logissue type=error;]Test test_selenium failed with error: ' + str(e))
