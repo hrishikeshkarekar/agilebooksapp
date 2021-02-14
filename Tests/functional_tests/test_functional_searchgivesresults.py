@@ -11,7 +11,6 @@ import os
 import sys
 import pytest
 import time
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 class FunctionalTests_SearchGivesResults(unittest.TestCase):
@@ -19,7 +18,7 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
     def setUp(self):
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
+        self.driver = webdriver.Chrome(chrome_options=options)
         self.driver.implicitly_wait(300)
 
     def test_selenium(self):
@@ -35,10 +34,11 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
                 element = self.driver.find_element_by_id("searchnowbtn")
                 element.click()
 
-                element = WebDriverWait(self.driver, 10).until(
-                        EC.visibility_of_element_located((By.ID, "searchnowbtn"))
-                )
-                self.assertNotEqual(element.text, "", "Value returned is bad : ")
+                time.sleep(10)
+
+                element = self.driver.find_element_by_id("totalbooksreturned")
+
+                self.assertNotEqual(element.text, "", "Value returned is bad : " + element.text)
 
                 break
 
