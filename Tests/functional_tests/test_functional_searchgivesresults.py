@@ -36,8 +36,11 @@ class FunctionalTests_SearchGivesResults(unittest.TestCase):
 
 				WebDriverWait(self.driver, 10)
 
-				element = self.driver.find_element_by_id("totalbooksreturned")
-				self.assertNotEqual(element.text, "", "Value returned is bad : " + element.text)
+				#element = self.driver.find_element_by_id("totalbooksreturned")
+
+				wait = WebDriverWait(self.driver, 10)
+				elem = wait.until(EC.visibility_of_element_located(By.ID, "totalbooksreturned"))
+				self.assertNotEqual(elem.text, "", "Value returned is bad : " + elem.text)
 
 			except Exception as e:
 				print('"##vso[task.logissue type=error;]Test test_selenium failed with error: ' + str(e))
