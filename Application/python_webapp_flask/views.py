@@ -7,6 +7,7 @@ from flask import render_template, request
 from python_webapp_flask import app
 
 import requests
+import json
 
 @app.route('/')
 @app.route('/home')
@@ -31,7 +32,11 @@ def search():
 
     response = requests.request("GET", url)
 
-    return response.text
+    if(response != ""):
+        return json.dumps({'status_code': 200, 'results': response.text})
+    else:
+        return json.dumps({'status_code': 500, 'error': 'Nothing was returned'})
+
 
 @app.route('/contact')
 def contact():

@@ -16,11 +16,7 @@ class ViewTest(unittest.TestCase):
 		response = self.app.get('/')
 		self.assertEqual(response.status_code, 200)
 
-	def test_unit_contact(self):
-		response = self.app.get('/contact')
+	def test_unit_search(self):
+		response = self.app.get('/search')
+		response = self.app.get('/search', {'searchterm': 'kanban'})
 		self.assertEqual(response.status_code, 200)
-
-	def test_unit_about(self):
-		response = self.app.get('/about')
-		self.assertEqual(response.status_code, 200)
-

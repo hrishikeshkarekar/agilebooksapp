@@ -275,21 +275,31 @@
                   },
                   success: function(response) {
 
-                    var results = JSON.parse(response);
+                    var resp = JSON.parse(response);
 
-                    $("#totalbooksreturned").html(results.totalItems);
+                    if(resp.status_code == 200) {
 
-                    $("#books-total-row").show();
+                        var results = JSON.parse(resp.results);
 
-                    for(var i=0; i<=2;i++){
-                        item = results.items[i];
-                        $("#title-" + (i+1)).html(item.volumeInfo.title);
+                        $("#totalbooksreturned").html(results.totalItems);
 
-                        shortDescription = (item.volumeInfo.description).split(" ").splice(0,30).join(" ");
-                        $("#description-" + (i+1)).html(shortDescription);
+                        $("#books-total-row").show();
 
-                        $("#image-" + (i+1)).attr("src", item.volumeInfo.imageLinks.thumbnail);
+                        for(var i=0; i<=2;i++){
+                            item = results.items[i];
+                            $("#title-" + (i+1)).html(item.volumeInfo.title);
+
+                            shortDescription = (item.volumeInfo.description).split(" ").splice(0,30).join(" ");
+                            $("#description-" + (i+1)).html(shortDescription);
+
+                            $("#image-" + (i+1)).attr("src", item.volumeInfo.imageLinks.thumbnail);
+                        }
+
                     }
+                    else{
+                        alert('Error:' + resp.error);
+                    }
+
 
                   },
                   error: function(xhr) {
