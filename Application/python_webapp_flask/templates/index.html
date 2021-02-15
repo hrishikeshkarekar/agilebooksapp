@@ -3,199 +3,213 @@
 
 <head>
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Agile Books - Working example of a Python based web app with CI/CD">
+    <meta name="author" content="Hrishikesh Karekar">
 
+    <title>Home Page - Agile Books</title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Agile Books - Working example of a Python based web app with CI/CD">
-  <meta name="author" content="Hrishikesh Karekar">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <title>Home Page - Agile Books</title>
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+          type="text/css">
 
-  <!-- Bootstrap core CSS -->
-  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-  <!-- Custom styles for this template -->
-  <link href="/static/css/landing-page.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/landing-page.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-light bg-light static-top" id="hometop">
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light static-top" id="hometop">
     <div class="container">
-      <a class="navbar-brand" href="#">Agile Books</a>
-      <a class="btn btn-primary" href="#whatdoesappdo">What does the app do?</a>
+        <a class="navbar-brand" href="#">Agile Books</a>
+        <a class="btn btn-primary" href="#whatdoesappdo">What does the app do?</a>
         <a class="btn btn-primary" href="#pipeline">CI/CD Pipeline</a>
         <a class="btn btn-primary" href="#githubrepo">GitHub Repo</a>
     </div>
-  </nav>
+</nav>
 
 
 <header class="masthead text-white text-center">
     <div class="overlay"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-           <h1 class="mb-5">Working example of a Python/Flask webapp with automated tests, maintained with Continuous Delivery</h1>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="search" class="form-control form-control-lg" placeholder="What's your area of interest today" id="searchterm">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="button" class="btn btn-block btn-lg btn-primary searchnow" id="searchnowbtn">Search!</button>
-              </div>
-            </div>
+        <div class="row">
             <div class="col-xl-9 mx-auto">
-              <h5 class="mb-5" id="processingmessage">Hold your breath! Getting your results!</h5>
-              <a class="btn btn-secondary" href="#resultspane" id="resultslink">Go to results</a>
+                <h1 class="mb-5">Working example of a Python/Flask webapp with automated tests, maintained with
+                    Continuous Delivery</h1>
             </div>
-          </form>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <form>
+                    <div class="form-row">
+                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                            <input type="search" class="form-control form-control-lg"
+                                   placeholder="What's your area of interest today" id="searchterm">
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <button type="button" class="btn btn-block btn-lg btn-primary searchnow" id="searchnowbtn">
+                                Search!
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 mx-auto">
+                        <h5 class="mb-5" id="processingmessage">Hold your breath! Getting your results!</h5>
+                        <a class="btn btn-secondary" href="#resultspane" id="resultslink">Go to results</a>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
 
-
-  <!-- Results Pane -->
-  <section class="features-icons bg-light text-center" id="resultspane">
+<!-- Results Pane -->
+<section class="features-icons bg-light text-center" id="resultspane">
     <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4" id="books-total-row">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h2 class="mb-4" id="books-total-row">
             <span id="NumberBooksLabel">
             Ready, fire, aim: the fast approach to software development. Ready, aim, aim, aim, aim: the slow approach to software development. (Anonymous)
           </span><span id="totalbooksreturned"></span></h2>
-        </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div>
-              <img id="image-1" class="text-primary" src="">
             </div>
-            <h4 id="title-1"></h4>
-            <p class="lead mb-0" id="description-1"></p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div>
-              <img id="image-2" class="text-primary" src="">
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div>
+                        <img id="image-1" class="text-primary" src="">
+                    </div>
+                    <h4 id="title-1"></h4>
+                    <p class="lead mb-0" id="description-1"></p>
+                </div>
             </div>
-            <h4 id="title-2"></h4>
-            <p class="lead mb-0" id="description-2"></p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-            <div>
-              <img id="image-3" class="text-primary" src="">
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div>
+                        <img id="image-2" class="text-primary" src="">
+                    </div>
+                    <h4 id="title-2"></h4>
+                    <p class="lead mb-0" id="description-2"></p>
+                </div>
             </div>
-            <h4 id="title-3"></h4>
-            <p class="lead mb-0" id="description-3"></p>
-          </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                    <div>
+                        <img id="image-3" class="text-primary" src="">
+                    </div>
+                    <h4 id="title-3"></h4>
+                    <p class="lead mb-0" id="description-3"></p>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <section class="features-icons bg-light text-center" id="whatdoesappdo">
+<section class="features-icons bg-light text-center" id="whatdoesappdo">
     <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">What does the web app do?</h2>
-          <p>
-              You could search for any book and it will bring the top 3 results from Google Books search.
-          </p>
-          <p>
-              It essentially calls the <a href="https://developers.google.com/books">Google Books API</a> and gets the results.
-          </p>
-          <p>
-              <b>Why its called an Agile Book app then ?</b> Just like that. It's a demo app :)
-          </p>
-          <a>
-              It was built to code and demonstrate an end to end <b>"working software"</b> example for CI/CD using a functional
-            <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Application">Python/Flask application</a>
-            along with example
-            <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Tests/unit_tests">Unit</a> and
-            <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Tests/functional_tests">Functional</a> tests.
-          </p>
-          <p>
-              And yes.. while we are at it.. It is fully responsive and mobile friendly too. Thanks <a target="_blank" href="https://startbootstrap.com/theme/landing-page">Start Boot Strap</a> for a simple landing page
-          </p>
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h2 class="mb-4">What does the web app do?</h2>
+                <p>
+                    You could search for any book and it will bring the top 3 results from Google Books search.
+                </p>
+                <p>
+                    It essentially calls the <a href="https://developers.google.com/books">Google Books API</a> and gets
+                    the results.
+                </p>
+                <p>
+                    <b>Why its called an Agile Book app then ?</b> Just like that. It's a demo app :)
+                </p>
+                <a>
+                    It was built to code and demonstrate an end to end <b>"working software"</b> example for CI/CD using
+                    a functional
+                    <a target="_blank"
+                       href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Application">Python/Flask
+                        application</a>
+                    along with example
+                    <a target="_blank"
+                       href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Tests/unit_tests">Unit</a>
+                    and
+                    <a target="_blank"
+                       href="https://github.com/hrishikeshkarekar/agilebooksapp/tree/master/Tests/functional_tests">Functional</a>
+                    tests.
+                    </p>
+                    <p>
+                        And yes.. while we are at it.. It is fully responsive and mobile friendly too. Thanks <a
+                            target="_blank" href="https://startbootstrap.com/theme/landing-page">Start Boot Strap</a>
+                        for a simple landing page
+                    </p>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <section class="features-icons bg-light text-center" id="pipeline">
+<section class="features-icons bg-light text-center" id="pipeline">
     <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">The Continuous Delivery Pipeline</h2>
-          <div>
-              <img id="image-ci-cd-pipeline" class="img-fluid" src="/static/img/ci-cd-pipeline.png">
-          </div>
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h2 class="mb-4">The Continuous Delivery Pipeline</h2>
+                <div>
+                    <img id="image-ci-cd-pipeline" class="img-fluid" src="/static/img/ci-cd-pipeline.png">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <section class="features-icons bg-light text-center" id="githubrepo">
+<section class="features-icons bg-light text-center" id="githubrepo">
     <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">The GitHub Repo</h2>
-          <p>The code can be downloaded freely and reviewed, reused, demonstrated as you deem fit.
-            It is available under a <a target="_blank" href="https://opensource.org/licenses/MIT">MIT License</a>
-          </p>
-          <p>
-            The code needs tremendous amount of refactoring. Feel free to suggest changes for improvement.
-          </p>
-          <p>
-            <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/">Visit the GitHub Repository</a>
-          </p>
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h2 class="mb-4">The GitHub Repo</h2>
+                <p>The code can be downloaded freely and reviewed, reused, demonstrated as you deem fit.
+                    It is available under a <a target="_blank" href="https://opensource.org/licenses/MIT">MIT
+                        License</a>
+                </p>
+                <p>
+                    The code needs tremendous amount of refactoring. Feel free to suggest changes for improvement.
+                </p>
+                <p>
+                    <a target="_blank" href="https://github.com/hrishikeshkarekar/agilebooksapp/">Visit the GitHub
+                        Repository</a>
+                </p>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
 
-  <!-- Footer -->
-  <footer class="footer bg-light">
+<!-- Footer -->
+<footer class="footer bg-light">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-          <ul class="list-inline mb-2">
-            <li class="list-inline-item">
-              <a target="_blank" href="http://www.hrishikeshkarekar.com">Hrishikesh Karekar</a>
-            </li>
-            <li class="list-inline-item">
-              <a target="_blank" href="https://github.com/users/hrishikeshkarekar/projects/1">What's Next</a>
-            </li>
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item">
+                        <a target="_blank" href="http://www.hrishikeshkarekar.com">Hrishikesh Karekar</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://github.com/users/hrishikeshkarekar/projects/1">What's Next</a>
+                    </li>
 
-          </ul>
+                </ul>
+
+            </div>
 
         </div>
-
-      </div>
     </div>
-  </footer>
+</footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <script>
+<script>
 
       $(document).ready(function(){
 
@@ -285,7 +299,8 @@
 
 
 
-  </script>
+
+</script>
 
 </body>
 

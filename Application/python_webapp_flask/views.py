@@ -9,6 +9,7 @@ from python_webapp_flask import app
 import requests
 import json
 
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -19,20 +20,21 @@ def home():
         year=datetime.now().year,
     )
 
+
 @app.route('/index')
 def index():
     return render_template('index.html', title='Home')
 
+
 @app.route('/search')
 def search():
-
     searchterm = request.args.get("searchterm")
 
     url = "https://www.googleapis.com/books/v1/volumes?q=" + searchterm + "&printType=books&maxResults=3"
 
     response = requests.request("GET", url)
 
-    if(response != ""):
+    if (response != ""):
         return json.dumps({'status_code': 200, 'results': response.text})
     else:
         return json.dumps({'status_code': 500, 'error': 'Nothing was returned'})
@@ -47,6 +49,7 @@ def contact():
         year=datetime.now().year,
         message='Your contact page.'
     )
+
 
 @app.route('/about')
 def about():
